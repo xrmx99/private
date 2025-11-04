@@ -3,230 +3,116 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Perdonami ❤️</title>
-  <meta name="description" content="Una piccola sorpresa per chiederti scusa." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <title>Scusami ❤️</title>
   <style>
-    :root{
-      --bg1:#0f0c29; --bg2:#302b63; --bg3:#24243e;
-      --card:#ffffff; --muted:#6b7280; --accent:#ff5ea6; --accent2:#ffd166; --ok:#22c55e;
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      font-family: 'Poppins', sans-serif;
+      text-align: center;
+      overflow: hidden;
     }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0; font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
-      background: radial-gradient(60% 80% at 70% 10%, rgba(255,94,166,.2), transparent 60%),
-                  linear-gradient(120deg, var(--bg1), var(--bg2) 50%, var(--bg3));
-      color:#0b0b0f; overflow-x:hidden;
+    h1 {
+      color: #fff;
+      font-size: 2em;
+      margin-bottom: 20px;
     }
-    .wrap{min-height:100%; display:grid; place-items:center; padding:24px}
-    .card{
-      width:min(920px,100%); background:rgba(255,255,255,.96); border-radius:24px; padding:28px; 
-      box-shadow:0 20px 60px rgba(0,0,0,.35), inset 0 0 0 1px rgba(255,255,255,.3);
-      position:relative; overflow:hidden;
-      backdrop-filter: blur(6px);
-      animation: pop .5s ease-out both;
+    button {
+      background: #fff;
+      border: none;
+      color: #ff4d6d;
+      padding: 12px 24px;
+      border-radius: 25px;
+      font-size: 1em;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+      z-index: 2;
     }
-    @keyframes pop{from{transform:translateY(10px) scale(.98); opacity:0} to{transform:none; opacity:1}}
-    .badge{display:inline-block; padding:6px 12px; border-radius:999px; font-size:12px; letter-spacing:.4px; color:#111;
-      background:linear-gradient(90deg,var(--accent),#ff89c1); box-shadow:0 6px 20px rgba(255,94,166,.35); color:white}
-    h1{margin:14px 0 8px; font-size:clamp(28px,4vw,40px); line-height:1.1}
-    p.lead{margin:0; color:#333; font-weight:300; font-size:clamp(16px,2.3vw,18px)}
-
-    .grid{display:grid; gap:16px; grid-template-columns: 1fr; margin-top:22px}
-    @media (min-width:860px){.grid{grid-template-columns:1.2fr .8fr}}
-
-    .note{
-      background:#fff; border-radius:16px; padding:18px; border:1px solid #ececec;
+    button:hover {
+      transform: scale(1.05);
     }
-    .note h3{margin:0 0 8px}
-    .note p{margin:6px 0; color:#444}
-    .note .muted{color:var(--muted); font-size:14px}
-
-    .actions{display:flex; gap:12px; flex-wrap:wrap; margin-top:18px}
-    .btn{appearance:none; border:0; cursor:pointer; padding:14px 18px; font-weight:700; border-radius:14px; transition:.2s transform ease, box-shadow .2s ease;}
-    .btn-primary{background:linear-gradient(90deg,var(--accent),#ff7fb4); color:white; box-shadow:0 10px 24px rgba(255,94,166,.35)}
-    .btn-primary:hover{transform:translateY(-2px)}
-    .btn-ghost{background:#0f172a; color:white}
-
-    .promise{display:grid; grid-template-columns: 24px 1fr; gap:10px; align-items:flex-start; padding:10px 0}
-    .promise svg{flex:0 0 24px}
-
-    .footer{display:flex; align-items:center; justify-content:space-between; gap:10px; margin-top:18px; color:#2b2b2b}
-    .footer small{color:var(--muted)}
-
-    /* Floating hearts */
-    .hearts{position:fixed; inset:0; pointer-events:none; overflow:hidden}
-    .heart{position:absolute; width:14px; height:14px; transform:rotate(45deg); animation:floatUp var(--dur) linear forwards; opacity:.9}
-    .heart:before,.heart:after{content:""; position:absolute; width:14px; height:14px; background:inherit; border-radius:50%}
-    .heart:before{left:-7px}
-    .heart:after{top:-7px}
-    @keyframes floatUp{to{transform:translateY(-110vh) rotate(45deg); opacity:0}}
-
-    .gallery{display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-top:16px}
-    .gallery img{width:100%; height:140px; object-fit:cover; border-radius:12px; filter:saturate(1.05); box-shadow:0 6px 16px rgba(0,0,0,.15)}
-
-    .ticket{display:grid; gap:10px; background:#fff; border-radius:16px; border:1px dashed #e5e7eb; padding:16px}
-    .ticket input,.ticket textarea{width:100%; border:1px solid #e5e7eb; border-radius:10px; padding:10px; font:inherit}
-
-    .toast{position:fixed; left:50%; bottom:22px; transform:translateX(-50%) translateY(20px); background:#111827; color:#fff; padding:12px 16px; border-radius:12px; opacity:0; transition:.25s ease; box-shadow:0 10px 30px rgba(0,0,0,.35)}
-    .toast.show{opacity:1; transform:translateX(-50%) translateY(0)}
-
-    .divider{height:1px; background:linear-gradient(90deg,transparent,#e5e7eb,transparent); margin:8px 0 2px}
+    #message {
+      display: none;
+      color: #fff;
+      font-size: 1.5em;
+      margin-top: 30px;
+      opacity: 0;
+      transition: opacity 1s ease;
+      z-index: 2;
+    }
+    #message.show {
+      display: block;
+      opacity: 1;
+    }
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: red;
+      transform: rotate(45deg);
+      animation: floatUp 3s ease-in infinite;
+      opacity: 0.8;
+    }
+    .heart::before, .heart::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: red;
+      border-radius: 50%;
+    }
+    .heart::before {
+      top: -10px;
+      left: 0;
+    }
+    .heart::after {
+      left: 10px;
+      top: 0;
+    }
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) rotate(45deg) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-600px) rotate(45deg) scale(0.5);
+        opacity: 0;
+      }
+    }
   </style>
 </head>
 <body>
-  <div class="hearts" aria-hidden="true" id="hearts"></div>
-
-  <main class="wrap">
-    <section class="card" role="dialog" aria-modal="true" aria-label="Messaggio di scuse">
-      <span class="badge">Per te</span>
-      <h1>Amore, mi dispiace. Vorrei rimediare.</h1>
-      <p class="lead">Ho fatto uno scivolone da manuale. Niente scuse vuote: voglio farti stare bene, partendo da <strong>ascoltarti</strong> e <strong>riparare</strong> con i fatti.</p>
-
-      <div class="grid">
-        <!-- LEFT -->
-        <div>
-          <div class="note">
-            <h3>Quello che provo</h3>
-            <p id="msg">Se ti ho ferita, è l’ultima cosa che volevo. Sei la mia persona e voglio meritarmi la tua fiducia ogni giorno.</p>
-            <p class="muted">Puoi modificare questo testo prima di inviare la pagina, è qui sopra.</p>
-            <div class="actions">
-              <button class="btn btn-primary" id="btnForgive">Perdonami 💗</button>
-              <button class="btn btn-ghost" id="btnSurprise">Apri la sorpresa ✨</button>
-            </div>
-          </div>
-
-          <div class="divider"></div>
-
-          <div class="ticket" aria-labelledby="invitoTit">
-            <h3 id="invitoTit">Invito ufficiale per un appuntamento</h3>
-            <label>
-              Data e ora
-              <input type="datetime-local" id="when" />
-            </label>
-            <label>
-              Luogo (anche casa con film e pizza va benissimo)
-              <input type="text" id="where" placeholder="Il nostro posto preferito" />
-            </label>
-            <label>
-              Messaggio
-              <textarea id="why" rows="3" placeholder="Prometto zero drammi e tante risate."></textarea>
-            </label>
-            <button class="btn btn-primary" id="btnInvite">Genera invito</button>
-            <p id="inviteOut" class="muted" style="margin:6px 0 0"></p>
-          </div>
-        </div>
-
-        <!-- RIGHT -->
-        <aside>
-          <div class="note">
-            <h3>Promesse concrete</h3>
-            <div class="promise">
-              <svg viewBox="0 0 24 24" width="24" height="24" fill="none" aria-hidden="true"><path d="M20 7L9 18l-5-5" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              <div>
-                <strong>Ascolto vero</strong>
-                <div class="muted">Ti lascio spazio, senza interrompere, e capisco prima di rispondere.</div>
-              </div>
-            </div>
-            <div class="promise">
-              <svg viewBox="0 0 24 24" width="24" height="24" fill="none" aria-hidden="true"><path d="M12 8v4l3 3" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              <div>
-                <strong>Niente rimandi</strong>
-                <div class="muted">Se sbaglio, lo affronto subito. Niente silenzi, niente orgoglio.</div>
-              </div>
-            </div>
-            <div class="promise">
-              <svg viewBox="0 0 24 24" width="24" height="24" fill="none" aria-hidden="true"><path d="M12 2l3 7h7l-5.5 4 2 7-6.5-4.5L6.5 20l2-7L3 9h7z" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              <div>
-                <strong>Fatti, non parole</strong>
-                <div class="muted">Piccoli gesti ogni giorno. Anche quando non è facile.</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="note">
-            <h3>I nostri momenti</h3>
-            <p class="muted">Sostituisci le immagini con le vostre.</p>
-            <div class="gallery">
-              <img src="https://images.unsplash.com/photo-1514846160150-2cfb150b48f2?q=80&w=1200&auto=format&fit=crop" alt="Noi mano nella mano" />
-              <img src="https://images.unsplash.com/photo-1541537103745-ea3429c65dc1?q=80&w=1200&auto=format&fit=crop" alt="Risate insieme" />
-              <img src="https://images.unsplash.com/photo-1510800050631-9bcf8b7f9750?q=80&w=1200&auto=format&fit=crop" alt="Tramonto romantico" />
-            </div>
-          </div>
-        </aside>
-      </div>
-
-      <div class="footer">
-        <small>Con amore, <span contenteditable="true" id="from">Marco</span></small>
-        <small>Premi “Perdonami” per un effetto a cuori. Niente audio, promesso.</small>
-      </div>
-    </section>
-  </main>
-
-  <div class="toast" id="toast" role="status" aria-live="polite">Invito copiato negli appunti ✅</div>
+  <h1>Scusa se ti ho fatto arrabbiare 💔</h1>
+  <button id="btn">Clicca qui</button>
+  <div id="message">Ti amo tanto amore mio, perdonami ❤️</div>
 
   <script>
-    // Floating hearts generator
-    const heartsCtn = document.getElementById('hearts');
-    function makeHeart(x){
-      const h = document.createElement('div');
-      h.className='heart';
-      const size = 10 + Math.random()*18;
-      h.style.width=h.style.height=size+'px';
-      h.style.left=(x ?? Math.random()*100)+'vw';
-      const hue = 330 + Math.random()*30; // pink-red
-      h.style.background = `hsl(${hue} 90% 60%)`;
-      h.style.setProperty('--dur', (5 + Math.random()*3)+'s');
-      h.style.bottom='-30px';
-      heartsCtn.appendChild(h);
-      setTimeout(()=>h.remove(), 8000);
+    const btn = document.getElementById('btn');
+    const msg = document.getElementById('message');
+
+    btn.addEventListener('click', () => {
+      msg.classList.add('show');
+      createHearts();
+    });
+
+    function createHearts() {
+      for (let i = 0; i < 30; i++) {
+        const heart = document.createElement('div');
+        heart.classList.add('heart');
+        heart.style.left = Math.random() * 100 + 'vw';
+        heart.style.background = `hsl(${Math.random() * 20 + 340}, 80%, 60%)`;
+        heart.style.animationDuration = 2 + Math.random() * 3 + 's';
+        heart.style.width = heart.style.height = 10 + Math.random() * 20 + 'px';
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 3000);
+      }
     }
-    function burst(n=40){
-      const w = window.innerWidth; 
-      const step = Math.max(1, Math.floor(w / n));
-      for(let i=0;i<n;i++) setTimeout(()=> makeHeart(i*step/ (w/100)), i*12);
-      navigator.vibrate?.(40);
-    }
-
-    document.getElementById('btnForgive').addEventListener('click', ()=>{
-      burst(50);
-    });
-
-    // Surprise button toggles gentle heart rain for a few seconds
-    let raining=false, rainInt;
-    document.getElementById('btnSurprise').addEventListener('click', ()=>{
-      if(raining){clearInterval(rainInt); raining=false; return}
-      raining=true;
-      let t=0; rainInt=setInterval(()=>{makeHeart(); if(++t>120){clearInterval(rainInt); raining=false}}, 120);
-    });
-
-    // Invite generator
-    const out = document.getElementById('inviteOut');
-    const toast = document.getElementById('toast');
-    function showToast(){toast.classList.add('show'); setTimeout(()=>toast.classList.remove('show'), 1800)}
-
-    document.getElementById('btnInvite').addEventListener('click', ()=>{
-      const when = document.getElementById('when').value;
-      const where = document.getElementById('where').value.trim();
-      const why = document.getElementById('why').value.trim();
-      const from = document.getElementById('from').innerText.trim() || 'Io';
-
-      const dateTxt = when ? new Date(when).toLocaleString('it-IT', {dateStyle:'full', timeStyle:'short'}) : 'quando vuoi tu';
-      const whereTxt = where || 'il nostro posto preferito';
-      const msg = `Ti va un appuntamento ${dateTxt} a ${whereTxt}? ${why || 'Voglio rimediare come meriti.'} \n— ${from}`;
-
-      out.innerHTML = 'Invito: <strong>'+msg.replace(/\n/g,'<br>')+'</strong>';
-      navigator.clipboard?.writeText(msg).then(showToast).catch(()=>{});
-      burst(30);
-    });
-
-    // Accessibility niceties on load
-    window.setTimeout(()=>{
-      document.querySelector('.card').focus?.();
-    }, 400);
   </script>
 </body>
 </html>
